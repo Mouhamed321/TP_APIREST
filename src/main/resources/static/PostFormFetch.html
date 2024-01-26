@@ -91,6 +91,27 @@
                 })
                 .catch(afficheMessage);
         }
+        function supprimeCategorie(url) {
+            fetch(`${url}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    switch (response.status) {
+                        case 200:
+                            chargeCategories();
+                            break;
+                            case 409:
+                            afficheMessage("Cette catégorie a des produits");
+                            break;
+                    }
+                })
+                .catch(afficheMessage);
+        }
+
     </script>
 </head>
 
@@ -116,11 +137,11 @@
         <h2>Liste des catégories ({{_embedded.categories.length}} / {{page.totalElements}})</h2>
         <TABLE>
         {{! Un commentaire Mustache }}
-        <TR><TH>Code</TH><TH>Libelle</TH><TH>Description</TH></TR>
+        <TR><TH>Code</TH><TH>Libelle</TH><TH>Description</TH><TH>Action</TH></TR>
         {{! Pour chaque categorie dans le tableau 'categories' }}
         {{#_embedded.categories}}
         {{! Une ligne dans la table }}
-        <TR><TD>{{code}}</TD><TD>{{libelle}}</TD><TD>{{description}}</TD></TR>
+        <TR><TD>{{code}}</TD><TD>{{libelle}}</TD><TD>{{description}}</TD><button type="button" onclick="supprimecCategorie({code})" suppeimer></button> </TR>
         {{/_embedded.categories}}
         </TABLE>
     </script>
