@@ -105,7 +105,7 @@
                             chargeCategories();
                             break;
                             case 409:
-                            afficheMessage("Cette catégorie a des produits");
+                            afficheMessage("Cette catégorie ne peut pas être supprimée");
                             break;
                     }
                 })
@@ -141,7 +141,7 @@
         {{! Pour chaque categorie dans le tableau 'categories' }}
         {{#_embedded.categories}}
         {{! Une ligne dans la table }}
-        <TR><TD>{{code}}</TD><TD>{{libelle}}</TD><TD>{{description}}</TD><button type="button" onclick="supprimecCategorie({code})" suppeimer></button> </TR>
+        <TR><TD>{{code}}</TD><TD>{{libelle}}</TD><TD>{{description}}</TD><BUTTON type="button" ONCLICK="supprimeCategorie({url})" Supprimer></BUTTON></TR>
         {{/_embedded.categories}}
         </TABLE>
     </script>
